@@ -2,7 +2,7 @@
 
 from Sudokus import sudoku          # The sudoku is chosen in the Sudokus file
 from FieldClass import Field
-from axiliary_functions import load_sudoku, print_sudoku
+from axiliary_functions import load_sudoku, print_sudoku, check_field_possible_number
 from create_rows_columns_boxes import create_rows, create_columns, create_boxes
 
 # Solving functions
@@ -20,13 +20,6 @@ boxes = create_boxes(fields)
 # Create a print of the first initial sudoku
 print_sudoku(fields)
 
-
-def check_field_possible_number(field):
-    if len(field.possible) == 1:
-        number = list(field.possible)[0]
-    else:
-        number = 0
-    return number
 
 for i in range(10):
     for field in fields:

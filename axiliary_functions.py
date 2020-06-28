@@ -65,6 +65,15 @@ def load_sudoku(sudoku):
     return fields
 
 
+def check_field_possible_number(field):
+    """ Check if the possible list in the field only contains one value. If so, set the number to the one possibility"""
+    if len(field.possible) == 1:
+        number = list(field.possible)[0]
+    else:
+        number = 0
+    return number
+
+
 def print_sudoku(fields):
     """ Print the list of fields in a nice sudoku-like way"""
     output = []
