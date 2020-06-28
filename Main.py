@@ -13,4 +13,3 @@ rows = create_rows(fields)
 columns = create_columns(fields)
 
 print_sudoku(fields)
-print(rows[2][8].number)

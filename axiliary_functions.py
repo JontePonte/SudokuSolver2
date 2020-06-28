@@ -87,7 +87,7 @@ def create_columns(fields):
 
     for num in column_num:    
         for field in fields:
-            if field.y == num:
+            if field.x == num:
                 column.append(field)
                 # Save row list and create new list when the row is finnished
                 if field.y == 8:
