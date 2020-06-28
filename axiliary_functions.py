@@ -53,7 +53,7 @@ def load_sudoku(sudoku):
 
             # If the field has a number, that is the only possibility
             if field.number != 0:
-                field.possible = [field.number]
+                field.possible = {field.number}
 
             fields.append(field)
 
@@ -89,7 +89,7 @@ def create_columns(fields):
         for field in fields:
             if field.x == num:
                 column.append(field)
-                # Save row list and create new list when the row is finnished
+                # Save column list and create new list when the column is finnished
                 if field.y == 8:
                     columns.append(column)
                     column = []
@@ -107,7 +107,7 @@ def create_boxes(fields):
         for field in fields:
             if field.box == num:
                 box.append(field)
-                # Save row list and create new list when the row is finnished
+                # Save box list and create new list when the box is full
                 if len(box) == 9:
                     boxes.append(box)
                     box = []
@@ -131,3 +131,5 @@ def print_sudoku(fields):
     for row in output:
         print(row)
     print(" ")
+
+
