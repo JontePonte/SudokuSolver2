@@ -16,12 +16,12 @@ The project is launched to improve my programming skills and give me a reason to
 
 # Roadmap
 Same as version 1 for now
-- [ ] Load a sudoku in a usable list
-- [ ] Print a good looking sudoku
-- [ ] Add ID-number for each square
-- [ ] Create simple solution loop
-    - [ ] Loop trough the square-list and remove possible numbers
-    - [ ] Check if numbers in a row, column or box just have one possibility
+- [x] Load a sudoku in a usable list
+- [x] Print a good looking sudoku
+- [x] Add ID-number for each square
+- [x] Create simple solution loop
+    - [x] Loop trough the square-list and remove possible numbers
+    - [x] Check if numbers in a row, column or box just have one possibility
     - [ ] Create a win condition
     - [ ] Create a failure condition
 - [ ] Create a more advance solution method
