@@ -97,6 +97,24 @@ def create_columns(fields):
     return columns
 
 
+def create_boxes(fields):
+    """ Store all fields in lists of columns """
+    boxes = []
+    box = []
+    box_num = list(range(9))
+
+    for num in box_num:    
+        for field in fields:
+            if field.box == num:
+                box.append(field)
+                # Save row list and create new list when the row is finnished
+                if len(box) == 9:
+                    boxes.append(box)
+                    box = []
+                    
+    return boxes
+
+
 def print_sudoku(fields):
     """ Print the list of fields in a nice sudoku-like way"""
     output = []
