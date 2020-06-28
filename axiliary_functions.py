@@ -92,3 +92,29 @@ def print_sudoku(fields):
     print(" ")
 
 
+def print_two_sudokus(fields_old, fields):
+    """ Print the list of fields in a nice sudoku-like way"""
+    output_old = []
+    output_old_row = []
+    # Create list in lists with all field numbers
+    for field in fields_old:
+        output_old_row.append(field.number)
+        if field.x == 8:
+            output_old.append(output_old_row)
+            output_old_row = []
+
+    output = []
+    output_row = []
+    # Create list in lists with all field numbers
+    for field in fields:
+        output_row.append(field.number)
+        if field.x == 8:
+            output.append(output_row)
+            output_row = []
+
+    # Print the numbers in output-list
+    print(" ")
+    for row_old, row in zip(output_old, output):
+        print(row_old, "   ", row)
+    print(" ")
+
