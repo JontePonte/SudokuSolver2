@@ -2,7 +2,8 @@
 
 from Sudokus import sudoku          # The sudoku is chosen in the Sudokus file
 from FieldClass import Field
-from axiliary_functions import load_sudoku, create_rows, create_columns, create_boxes, print_sudoku
+from axiliary_functions import load_sudoku, print_sudoku
+from create_rows_columns_boxes import create_rows, create_columns, create_boxes
 
 # Solving functions
 from simple_remove_possibilities import simple_remove_possibilities_rows, simple_remove_possibilities_columns, simple_remove_possibilities_boxes
@@ -20,11 +21,18 @@ boxes = create_boxes(fields)
 print_sudoku(fields)
 
 
-print(fields[1].possible)
+def check_field_possible_number(field):
+    if len(field.possible) == 1:
+        number = list(field.possible)[0]
+    else:
+        number = 0
+    return number
 
-for field in fields:
-    field.possible = simple_remove_possibilities_rows(field, rows[field.y])
-    field.possible = simple_remove_possibilities_columns(field, columns[field.x])
-    field.possible = simple_remove_possibilities_boxes(field, boxes[field.box])
+for i in range(10):
+    for field in fields:
+        field.possible = simple_remove_possibilities_rows(field, rows[field.y])
+        field.possible = simple_remove_possibilities_columns(field, columns[field.x])
+        field.possible = simple_remove_possibilities_boxes(field, boxes[field.box])
+        field.number = check_field_possible_number(field)
 
-print(fields[1].possible)
+print_sudoku(fields)
