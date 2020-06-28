@@ -23,7 +23,11 @@ Same as version 1 for now
     - [x] Loop trough the square-list and remove possible numbers
     - [x] Check if numbers in a row, column or box just have one possibility
     - [x] Create a win condition
-    - [x] Create a failure condition
+    - [x] Create a failure
+- [ ] Add unit tests
+    - [ ] Create a folder and file structure for unit tests
+    - [ ] Test a unit test on one of the functions
+    - [ ] Implement relevant unit tests on all functions
 - [ ] Create a more advance solution method
     - [ ] Add more advanced sudoku to test on
     - [ ] Remove possible numbers based on combinations of numbers elsewere
