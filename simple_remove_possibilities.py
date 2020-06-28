@@ -1,6 +1,6 @@
 
 
-def simple_remove_possibilities_rows(field, row):
+def simple_remove_possibilities_row(field, row):
     """ Remove a fields possibilities if the numbers appear in the fields row """
     possible = field.possible
     for other_field in row:
@@ -10,7 +10,7 @@ def simple_remove_possibilities_rows(field, row):
     return possible
 
 
-def simple_remove_possibilities_columns(field, column):
+def simple_remove_possibilities_column(field, column):
     """ Remove a fields possibilities if the numbers appear in the fields column """
     possible = field.possible
     for other_field in column:
@@ -20,7 +20,7 @@ def simple_remove_possibilities_columns(field, column):
     return possible
 
 
-def simple_remove_possibilities_boxes(field, box):
+def simple_remove_possibilities_boxe(field, box):
     """ Remove a fields possibilities if the numbers appear in the fields box """
     possible = field.possible
     for other_field in box:
