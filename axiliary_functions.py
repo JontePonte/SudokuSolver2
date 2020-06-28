@@ -26,7 +26,7 @@ def set_box_number(x, y):
             box_number = 7
         elif 6 <= x <= 8:
             box_number = 8
-            
+
     return box_number
 
 
@@ -66,19 +66,35 @@ def load_sudoku(sudoku):
 
 
 def create_rows(fields):
+    """ Store all fields in lists of rows """
     rows = []
     row = []
-    row_num = 0
     for field in fields:
-        if field.y == row_num:
-            row.append(field)
-            if field.x == 8:
-                rows.append(row)
-                row = []
-                row_num += 1
-    
+        row.append(field)
+        # Save row list and create new list when the row is finnished
+        if field.x == 8:
+            rows.append(row)
+            row = []
+            
     return rows
 
+
+def create_columns(fields):
+    """ Store all fields in lists of columns """
+    columns = []
+    column = []
+    column_num = list(range(9))
+
+    for num in column_num:    
+        for field in fields:
+            if field.y == num:
+                column.append(field)
+                # Save row list and create new list when the row is finnished
+                if field.y == 8:
+                    columns.append(column)
+                    column = []
+                    
+    return columns
 
 
 def print_sudoku(fields):
