@@ -22,8 +22,8 @@ Same as version 1 for now
 - [x] Create simple solution loop
     - [x] Loop trough the square-list and remove possible numbers
     - [x] Check if numbers in a row, column or box just have one possibility
-    - [ ] Create a win condition
-    - [ ] Create a failure condition
+    - [x] Create a win condition
+    - [x] Create a failure condition
 - [ ] Create a more advance solution method
     - [ ] Add more advanced sudoku to test on
     - [ ] Remove possible numbers based on combinations of numbers elsewere

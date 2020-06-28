@@ -74,6 +74,14 @@ def check_field_possible_number(field):
     return number
 
 
+def is_solved(fields):
+    """ Returns true if solved and false if not """
+    for field in fields:
+        if field.number == 0:
+            return False
+    return True
+
+
 def print_sudoku(fields):
     """ Print the list of fields in a nice sudoku-like way"""
     output = []
