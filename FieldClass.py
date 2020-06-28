@@ -1,6 +1,6 @@
 class Field():
     def __init__(self):
-        # x- and y coordinates and box number. All coordinates and box are numbered 1-9
+        # x- and y coordinates and box number. All coordinates and box are numbered 0-8
         self.x = 0
         self.y = 0
         self.box = 0
