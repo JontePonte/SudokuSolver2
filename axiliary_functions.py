@@ -33,3 +33,21 @@ def load_sudoku(sudoku):
             id_num += 1
         y += 1
     return(fields)
+
+
+def print_sudoku(fields):
+    """ Print the list of fields in a nice sudoku-like way"""
+    output = []
+    output_row = []
+    # Create list in lists with all field numbers
+    for field in fields:
+        output_row.append(field.number)
+        if field.x == 8:
+            output.append(output_row)
+            output_row = []
+
+    # Print the numbers in output-list
+    print(" ")
+    for row in output:
+        print(row)
+    print(" ")
