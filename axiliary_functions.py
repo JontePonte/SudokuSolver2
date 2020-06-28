@@ -2,12 +2,40 @@
 from FieldClass import Field
 
 
+def set_box_number(x, y):
+    """ Get the number of the box the hard way... """
+    
+    if y <= 2:
+        if x <= 2:
+            box_number = 0
+        elif 3 <= x <= 5:
+            box_number = 1
+        elif 6 <= x <= 8:
+            box_number = 2
+    elif 3 <= y <= 5:
+        if x <= 2:
+            box_number = 3
+        elif 3 <= x <= 5:
+            box_number = 4
+        elif 6 <= x <= 8:
+            box_number = 5
+    elif 6 <= y <= 8:
+        if x <= 2:
+            box_number = 6
+        elif 3 <= x <= 5:
+            box_number = 7
+        elif 6 <= x <= 8:
+            box_number = 8
+            
+    return box_number
+
+
 def load_sudoku(sudoku):
     """ Create a list of fields with all relevant information based on a sudoku. The sudoku needs to be in the form found in Sudokus.py """
     y = 0
     id_num = 0
     fields = []
-
+    
     for row in sudoku:
         x = 0
         for number in row:
@@ -17,7 +45,7 @@ def load_sudoku(sudoku):
             # Set coordinates, 3x3 box and and id
             field.x = x
             field.y = y
-            field.box = 0
+            field.box = set_box_number(x, y)
             field.id = id_num
             
 
@@ -33,8 +61,24 @@ def load_sudoku(sudoku):
             x += 1
             id_num += 1
         y += 1
-
+        
     return fields
+
+
+def create_rows(fields):
+    rows = []
+    row = []
+    row_num = 0
+    for field in fields:
+        if field.y == row_num:
+            row.append(field)
+            if field.x == 8:
+                rows.append(row)
+                row = []
+                row_num += 1
+    
+    return rows
+
 
 
 def print_sudoku(fields):
