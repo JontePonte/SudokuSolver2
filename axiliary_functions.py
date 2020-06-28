@@ -7,6 +7,7 @@ def load_sudoku(sudoku):
     y = 0
     id_num = 0
     fields = []
+
     for row in sudoku:
         x = 0
         for number in row:
@@ -32,7 +33,8 @@ def load_sudoku(sudoku):
             x += 1
             id_num += 1
         y += 1
-    return(fields)
+
+    return fields
 
 
 def print_sudoku(fields):
