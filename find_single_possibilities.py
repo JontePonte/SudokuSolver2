@@ -1,4 +1,9 @@
 
+""" 
+This functions are basically all the same and could be grouped into one.
+They are kept seperate for row, column and box for readability.
+"""
+
 def find_single_possibilities_row(field, row):
     """ Check if a possibility in the field only appears ones in a row. Sets the possibility to that value if so """
     # Only check the unset numbers

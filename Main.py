@@ -19,7 +19,7 @@ rows = create_rows(fields)
 columns = create_columns(fields)
 boxes = create_boxes(fields)
 
-
+# Loop all the fields 10 times and run all solving functions. 
 for i in range(10):
     for field in fields:
         field.possible = simple_remove_possibilities_row(field, rows[field.y])
@@ -30,6 +30,8 @@ for i in range(10):
         field.possible = find_single_possibilities_column(field, columns[field.x])
         field.possible = find_single_possibilities_box(field, boxes[field.box])
 
+        # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
 
+# THe original and the hopfully solved sudoku are printed side by side
 print_two_sudokus(fields_old, fields)
