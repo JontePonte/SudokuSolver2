@@ -93,7 +93,7 @@ def print_sudoku(fields):
 
 
 def print_two_sudokus(fields_old, fields):
-    """ Print the list of fields in a nice sudoku-like way"""
+    """ Print two sudokus named (fields_old and fields) side by side"""
     output_old = []
     output_old_row = []
     # Create list in lists with all field numbers
@@ -112,7 +112,7 @@ def print_two_sudokus(fields_old, fields):
             output.append(output_row)
             output_row = []
 
-    # Print the numbers in output-list
+    # Print the numbers in output_old and output lists
     print(" ")
     for row_old, row in zip(output_old, output):
         print(row_old, "   ", row)
