@@ -18,14 +18,27 @@ rows = create_rows(fields)
 columns = create_columns(fields)
 boxes = create_boxes(fields)
 
-def find_single_possibilities_row(row):
-    pass
+
+def find_single_possibilities_row(field, row):
+    for num in field.possible:
+        num_found_times = 0
+        for other_field in row:
+            if other_field.id != field.id:
+                if num in other_field.possible:
+                    num_found_times += 1
+        if num_found_times == 0:
+            return {num}
+    return field.possible
+
 
 for i in range(10):
     for field in fields:
         field.possible = simple_remove_possibilities_row(field, rows[field.y])
         field.possible = simple_remove_possibilities_column(field, columns[field.x])
         field.possible = simple_remove_possibilities_boxe(field, boxes[field.box])
+
+        field.possible = find_single_possibilities_row(field, rows[field.y])
+
         field.number = check_field_possible_number(field)
 
 print_two_sudokus(fields_old, fields)
