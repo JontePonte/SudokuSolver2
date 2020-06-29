@@ -1,7 +1,7 @@
 import unittest
 import auxiliary_functions
 
-class TestAuxiliary_functions(unittest.TestCase):
+class TestAuxiliaryFunctions(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
