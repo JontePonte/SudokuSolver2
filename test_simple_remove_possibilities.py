@@ -18,31 +18,28 @@ class TestSimpleRemovePossibilities(unittest.TestCase):
                         [0, 5, 0, 0, 0, 0, 9, 0, 3],
                         [0, 0, 0, 2, 0, 9, 0, 0, 7]]
 
-        # s id for solved
-        cls.sudoku_s = [[2, 4, 7, 6, 9, 3, 8, 5, 1],
-                        [9, 1, 6, 8, 2, 5, 3, 7, 4],
-                        [5, 8, 3, 1, 4, 7, 6, 2, 9],
-                        [4, 7, 1, 3, 6, 8, 5, 9, 2],
-                        [8, 2, 5, 9, 1, 4, 7, 3, 6],
-                        [3, 6, 9, 5, 7, 2, 1, 4, 8],
-                        [1, 9, 4, 7, 3, 6, 2, 8, 5],
-                        [7, 5, 2, 4, 8, 1, 9, 6, 3],
-                        [6, 3, 8, 2, 5, 9, 4, 1, 7]]
         
         cls.fields = auxiliary_functions.load_sudoku(cls.sudoku)
-        cls.fields_s = auxiliary_functions.load_sudoku(cls.sudoku_s)
 
         # Create rows, column and boxes for the testing
         cls.rows = cr.create_rows(cls.fields)
         cls.columns = cr.create_columns(cls.fields)
         cls.boxes = cr.create_boxes(cls.fields)
-        
-        # Create versions with the solved sudoku
-        cls.rows_s = cr.create_rows(cls.fields_s)
-        cls.columns_s = cr.create_columns(cls.fields_s)
-        cls.boxes_s = cr.create_boxes(cls.fields_s)
     
     
     def test_simple_remove_row(self):
         self.assertEqual(sr.simple_remove_possibilities_row(self.fields[0], self.rows[0]), {2})
+        self.assertEqual(sr.simple_remove_possibilities_row(self.fields[9], self.rows[1]), {1,2,4,7,9})
+        self.assertEqual(sr.simple_remove_possibilities_row(self.fields[78], self.rows[8]), {1,3,4,5,6,8})
     
+
+    def test_simple_remove_column(self):
+        self.assertEqual(sr.simple_remove_possibilities_column(self.columns[1][3], self.columns[1]), {7})
+        self.assertEqual(sr.simple_remove_possibilities_column(self.fields[6], self.columns[6]), {1,2,4,5,6,7,8})
+        self.assertEqual(sr.simple_remove_possibilities_column(self.fields[76], self.columns[4]), {1,2,3,5,6,8})
+    
+    
+    def test_simple_remove_box(self):
+        self.assertEqual(sr.simple_remove_possibilities_boxes(self.boxes[3][0], self.boxes[3]), {4})
+        self.assertEqual(sr.simple_remove_possibilities_boxes(self.fields[1], self.boxes[0]), {1,4,7,8,9})
+        self.assertEqual(sr.simple_remove_possibilities_boxes(self.fields[79], self.boxes[8]), {1,2,4,5,6,8})
