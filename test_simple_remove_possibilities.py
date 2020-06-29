@@ -40,6 +40,6 @@ class TestSimpleRemovePossibilities(unittest.TestCase):
     
     
     def test_simple_remove_box(self):
-        self.assertEqual(sr.simple_remove_possibilities_boxes(self.boxes[3][0], self.boxes[3]), {4})
-        self.assertEqual(sr.simple_remove_possibilities_boxes(self.fields[1], self.boxes[0]), {1,4,7,8,9})
-        self.assertEqual(sr.simple_remove_possibilities_boxes(self.fields[79], self.boxes[8]), {1,2,4,5,6,8})
+        self.assertEqual(sr.simple_remove_possibilities_box(self.boxes[3][0], self.boxes[3]), {4})
+        self.assertEqual(sr.simple_remove_possibilities_box(self.fields[1], self.boxes[0]), {1,4,7,8,9})
+        self.assertEqual(sr.simple_remove_possibilities_box(self.fields[79], self.boxes[8]), {1,2,4,5,6,8})
