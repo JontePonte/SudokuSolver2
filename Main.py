@@ -36,7 +36,7 @@ while not is_solved(fields) and counter < 19:
         field.number = check_field_possible_number(field)
     counter += 1
 
-
+print(" ")
 if is_solved(fields):
     print("The sudoku was solved after", str(counter+1), "iterations")
 else:
