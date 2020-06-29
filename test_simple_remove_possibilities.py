@@ -31,3 +31,7 @@ class TestSimpleRemovePossibilities(unittest.TestCase):
         
         cls.fields = auxiliary_functions.load_sudoku(cls.sudoku)
         cls.fields_s = auxiliary_functions.load_sudoku(cls.sudoku_s)
+    
+    
+    def test_first(self):
+        self.assertEqual(0,0)

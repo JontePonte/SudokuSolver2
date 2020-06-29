@@ -1,6 +1,6 @@
 import unittest
 import auxiliary_functions
-import create_rows_columns_boxes
+import create_rows_columns_boxes as cr
 
 
 class TestCreateRowsColumnsBoxes(unittest.TestCase):
@@ -30,3 +30,28 @@ class TestCreateRowsColumnsBoxes(unittest.TestCase):
         
         cls.fields = auxiliary_functions.load_sudoku(cls.sudoku)
         cls.fields_s = auxiliary_functions.load_sudoku(cls.sudoku_s)
+    
+    
+    def test_create_rows(self):
+        rows = cr.create_rows(self.fields)
+        rows_s = cr.create_rows(self.fields_s)
+        
+        self.assertEqual(rows[0][0].id, 0)
+        self.assertEqual(rows[3][8].number, 2)
+        self.assertEqual(len(rows[6]), 9)
+        self.assertEqual(len(rows), 9)
+
+        self.assertEqual(rows_s[2][4].number, 4)
+
+
+    def test_create_columns(self):
+        columns = cr.create_columns(self.fields)
+        columns_s = cr.create_columns(self.fields_s)
+        
+        self.assertEqual(columns[3][0].id, 3)
+        self.assertEqual(columns[3][6].number, 7)
+        self.assertEqual(len(columns[6]), 9)
+        self.assertEqual(len(columns), 9)
+
+        self.assertEqual(columns_s[2][4].number, 5)
+
