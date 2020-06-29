@@ -2,7 +2,7 @@
 
 from Sudokus import sudoku          # The sudoku is chosen in the Sudokus file
 from FieldClass import Field
-from axiliary_functions import load_sudoku, check_field_possible_number, is_solved, print_sudoku, print_two_sudokus
+from auxiliary_functions import load_sudoku, check_field_possible_number, is_solved, print_sudoku, print_two_sudokus
 from create_rows_columns_boxes import create_rows, create_columns, create_boxes
 
 # Solving functions
