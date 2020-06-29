@@ -25,13 +25,13 @@ Same as version 1 for now
     - [x] Create a win condition
     - [x] Create a failure
 - [ ] Add unit tests
-    - [ ] Create a folder and file structure for unit tests
-    - [ ] Test a unit test on one of the functions
+    - [x] Create a folder and file structure for unit tests
+    - [x] Test a unit test on one of the functions
     - [ ] Implement relevant unit tests on all functions
 - [ ] Create a more advance solution method
-    - [ ] Add more advanced sudoku to test on
+    - [x] Add more advanced sudoku to test on
     - [ ] Remove possible numbers based on combinations of numbers elsewere
 - [ ] Create a very advanced solution method
-    - [ ] Add even more advanced sudoku to test on
+    - [x] Add even more advanced sudoku to test on
     - [ ] Test numbers if the other methods fail
 - [ ] Better input for the sudoku

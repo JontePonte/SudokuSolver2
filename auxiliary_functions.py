@@ -5,6 +5,9 @@ from FieldClass import Field
 def set_box_number(x, y):
     """ Get the number of the box the hard way... """
     
+    if not isinstance(x, int) or not isinstance(y, int):
+        raise ValueError("x and y in set_box_number needs to be integer")
+
     if y <= 2:
         if x <= 2:
             box_number = 0
