@@ -1,8 +1,8 @@
 import unittest
 import auxiliary_functions
-import create_rows_columns_boxes
+import create_rows_columns_boxes as cr
 
-import simple_remove_possibilities
+import simple_remove_possibilities as sr
 
 class TestSimpleRemovePossibilities(unittest.TestCase):
     
@@ -31,7 +31,18 @@ class TestSimpleRemovePossibilities(unittest.TestCase):
         
         cls.fields = auxiliary_functions.load_sudoku(cls.sudoku)
         cls.fields_s = auxiliary_functions.load_sudoku(cls.sudoku_s)
+
+        # Create rows, column and boxes for the testing
+        cls.rows = cr.create_rows(cls.fields)
+        cls.columns = cr.create_columns(cls.fields)
+        cls.boxes = cr.create_boxes(cls.fields)
+        
+        # Create versions with the solved sudoku
+        cls.rows_s = cr.create_rows(cls.fields_s)
+        cls.columns_s = cr.create_columns(cls.fields_s)
+        cls.boxes_s = cr.create_boxes(cls.fields_s)
     
     
-    def test_first(self):
-        self.assertEqual(0,0)
+    def test_simple_remove_row(self):
+        self.assertEqual(sr.simple_remove_possibilities_row(self.fields[0], self.rows[0]), {2})
+    
