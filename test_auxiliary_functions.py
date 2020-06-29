@@ -29,6 +29,7 @@ class TestAuxiliary_functions(unittest.TestCase):
         cls.fields = auxiliary_functions.load_sudoku(cls.sudoku)
         cls.fields_s = auxiliary_functions.load_sudoku(cls.sudoku_s)
 
+
     def test_set_box_number(self):
         self.assertEqual(auxiliary_functions.set_box_number(0,0), 0)
         self.assertEqual(auxiliary_functions.set_box_number(8,0), 2)
@@ -42,6 +43,7 @@ class TestAuxiliary_functions(unittest.TestCase):
         with self.assertRaises(ValueError):
             auxiliary_functions.set_box_number(3.5, 4)
     
+
     def test_load_sudoku(self):
         fields_t = auxiliary_functions.load_sudoku(self.sudoku)
 
@@ -56,6 +58,16 @@ class TestAuxiliary_functions(unittest.TestCase):
         self.assertEqual(fields_t[77].number, 9)
         self.assertEqual(fields_t[14].number, 5)
         self.assertEqual(fields_t[28].number, 7)
+
+
+    def test_check_field_possible_number(self):
+        self.assertEqual(auxiliary_functions.check_field_possible_number(self.fields[0]), 2)
+        self.assertEqual(auxiliary_functions.check_field_possible_number(self.fields[1]), 0)
+
+
+    def test_is_solved(self):
+        self.assertEqual(auxiliary_functions.is_solved(self.fields), False)
+        self.assertEqual(auxiliary_functions.is_solved(self.fields_s), True)
 
 
 if __name__ == '__main__':
