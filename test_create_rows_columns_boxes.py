@@ -31,7 +31,7 @@ class TestCreateRowsColumnsBoxes(unittest.TestCase):
         cls.fields = auxiliary_functions.load_sudoku(cls.sudoku)
         cls.fields_s = auxiliary_functions.load_sudoku(cls.sudoku_s)
     
-    
+
     def test_create_rows(self):
         rows = cr.create_rows(self.fields)
         rows_s = cr.create_rows(self.fields_s)
@@ -55,3 +55,15 @@ class TestCreateRowsColumnsBoxes(unittest.TestCase):
 
         self.assertEqual(columns_s[2][4].number, 5)
 
+
+    def test_create_boxes(self):
+        boxes = cr.create_boxes(self.fields)
+        boxes_s = cr.create_boxes(self.fields_s)
+        
+        self.assertEqual(boxes[1][0].id, 3)
+        self.assertEqual(boxes[2][2].id, 8)
+        self.assertEqual(boxes[3][7].number, 6)
+        self.assertEqual(len(boxes[6]), 9)
+        self.assertEqual(len(boxes), 9)
+
+        self.assertEqual(boxes_s[5][1].number, 9)
