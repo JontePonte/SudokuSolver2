@@ -20,7 +20,7 @@ def simple_remove_possibilities_column(field, column):
     return possible
 
 
-def simple_remove_possibilities_boxe(field, box):
+def simple_remove_possibilities_boxes(field, box):
     """ Remove a fields possibilities if the numbers appear in the fields box """
     possible = field.possible
     for other_field in box:

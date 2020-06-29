@@ -6,7 +6,7 @@ from auxiliary_functions import load_sudoku, check_field_possible_number, is_sol
 from create_rows_columns_boxes import create_rows, create_columns, create_boxes
 
 # Solving functions
-from simple_remove_possibilities import simple_remove_possibilities_row, simple_remove_possibilities_column, simple_remove_possibilities_boxe
+from simple_remove_possibilities import simple_remove_possibilities_row, simple_remove_possibilities_column, simple_remove_possibilities_boxes
 from find_single_possibilities import find_single_possibilities_row, find_single_possibilities_column, find_single_possibilities_box
 
 
@@ -26,7 +26,7 @@ while not is_solved(fields) and counter < 19:
     for field in fields:
         field.possible = simple_remove_possibilities_row(field, rows[field.y])
         field.possible = simple_remove_possibilities_column(field, columns[field.x])
-        field.possible = simple_remove_possibilities_boxe(field, boxes[field.box])
+        field.possible = simple_remove_possibilities_boxes(field, boxes[field.box])
 
         field.possible = find_single_possibilities_row(field, rows[field.y])
         field.possible = find_single_possibilities_column(field, columns[field.x])
