@@ -24,10 +24,10 @@ Same as version 1 for now
     - [x] Check if numbers in a row, column or box just have one possibility
     - [x] Create a win condition
     - [x] Create a failure
-- [ ] Add unit tests
+- [x] Add unit tests
     - [x] Create a folder and file structure for unit tests
     - [x] Test a unit test on one of the functions
-    - [ ] Implement relevant unit tests on all functions
+    - [x] Implement relevant unit tests on all functions
 - [ ] Create a more advance solution method
     - [x] Add more advanced sudoku to test on
     - [ ] Remove possible numbers based on combinations of numbers elsewere
