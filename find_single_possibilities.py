@@ -1,6 +1,10 @@
 
 def find_single_possibilities(field, list):
     """ Check if a possibility in the field only appears ones in a list of fields. Sets the fields possibility to that value if so """
+    
+    if len(list) != 9:
+        raise ValueError("The list input to find_single_possibilities must be == 9")
+    
     # Only check the unset numbers
     if field.number == 0:
         for num in field.possible:
