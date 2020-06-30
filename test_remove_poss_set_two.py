@@ -96,4 +96,4 @@ class TestRemovePossSetTwo(unittest.TestCase):
         self.assertEqual(row_1_result[5].possible, {5})        
         self.assertEqual(row_1_result[6].possible, {3})        
         self.assertEqual(row_1_result[7].possible, {2,4})        
-        self.assertEqual(row_1_result[8].possible, {5,7,9})        
+        self.assertEqual(row_1_result[8].possible, {5,7,9})       

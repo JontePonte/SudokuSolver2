@@ -85,6 +85,15 @@ def is_solved(fields):
     return True
 
 
+def count_zeros(fields):
+    """ Returns the number of zeros in the sudoku """
+    num_zero = 0
+    for field in fields:
+        if field.number == 0:
+            num_zero += 1
+    return num_zero
+
+
 def print_sudoku(fields):
     """ Print the list of fields in a nice sudoku-like way"""
     output = []

@@ -2,7 +2,7 @@
 
 from Sudokus import sudoku          # The sudoku is chosen in the Sudokus file
 from FieldClass import Field
-from auxiliary_functions import (load_sudoku, check_field_possible_number, is_solved, print_sudoku, print_two_sudokus)
+from auxiliary_functions import (load_sudoku, check_field_possible_number, is_solved, count_zeros, print_sudoku, print_two_sudokus)
 from create_rows_columns_boxes import create_rows, create_columns, create_boxes
 
 # Solving functions
@@ -10,7 +10,7 @@ from simple_remove_possibilities import (simple_remove_possibilities_row,
                                          simple_remove_possibilities_column, 
                                          simple_remove_possibilities_box)
 from find_single_possibilities import find_single_possibilities
-from remove_poss_two_numbers import remove_poss_just_two
+from remove_poss_two_numbers import remove_poss_just_two, remove_extra_poss_if_two
 
 
 # Create field objects for the sudoku
@@ -37,10 +37,13 @@ while not is_solved(fields) and counter < 19:
         
         for row in rows:
             row = remove_poss_just_two(row)
+            row = remove_extra_poss_if_two(row)
         for column in columns:
             column = remove_poss_just_two(column)
+            column = remove_extra_poss_if_two(column)
         for box in boxes:
             box = remove_poss_just_two(box)
+            box = remove_extra_poss_if_two(box)
         
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
@@ -52,6 +55,7 @@ if is_solved(fields):
     print("The sudoku was solved after", str(counter+1), "iterations")
 else:
     print("The sudoku was not solved after", str(counter+1), "iterations")
+    print(count_zeros(fields), "unsolved fields")
 
 # The original and the hopfully solved sudoku are printed side by side
 print_two_sudokus(fields_old, fields)
