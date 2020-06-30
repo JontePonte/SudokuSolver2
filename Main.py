@@ -9,9 +9,7 @@ from create_rows_columns_boxes import create_rows, create_columns, create_boxes
 from simple_remove_possibilities import (simple_remove_possibilities_row, 
                                          simple_remove_possibilities_column, 
                                          simple_remove_possibilities_box)
-from find_single_possibilities import   (find_single_possibilities_row, 
-                                         find_single_possibilities_column, 
-                                         find_single_possibilities_box)
+from find_single_possibilities import find_single_possibilities
 
 
 # Create field objects for the sudoku
@@ -32,9 +30,9 @@ while not is_solved(fields) and counter < 19:
         field.possible = simple_remove_possibilities_column(field, columns[field.x])
         field.possible = simple_remove_possibilities_box(field, boxes[field.box])
 
-        field.possible = find_single_possibilities_row(field, rows[field.y])
-        field.possible = find_single_possibilities_column(field, columns[field.x])
-        field.possible = find_single_possibilities_box(field, boxes[field.box])
+        field.possible = find_single_possibilities(field, rows[field.y])
+        field.possible = find_single_possibilities(field, columns[field.x])
+        field.possible = find_single_possibilities(field, boxes[field.box])
 
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)

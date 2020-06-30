@@ -1,9 +1,9 @@
 
 
-def simple_remove_possibilities_row(field, row):
-    """ Remove a fields possibilities if the numbers appear in the fields row """
+def simple_remove_possibilities_row(field, list):
+    """ Remove a fields possibilities if the numbers appear in the other fields in the row """
     possible = field.possible
-    for other_field in row:
+    for other_field in list:
         if other_field.id != field.id:
             # Remove possibilities from the field by discarding the from the set
             possible.discard(other_field.number)
