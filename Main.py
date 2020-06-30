@@ -10,6 +10,7 @@ from simple_remove_possibilities import (simple_remove_possibilities_row,
                                          simple_remove_possibilities_column, 
                                          simple_remove_possibilities_box)
 from find_single_possibilities import find_single_possibilities
+from remove_poss_set_two import remove_poss_set_two
 
 
 # Create field objects for the sudoku
@@ -37,6 +38,7 @@ while not is_solved(fields) and counter < 19:
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
     counter += 1
+
 
 print(" ")
 if is_solved(fields):
