@@ -2,7 +2,7 @@ import unittest
 import auxiliary_functions
 import create_rows_columns_boxes as cr
 
-import remove_poss_set_two as rem_poss
+import remove_poss_two_numbers as rem_poss
 
 class TestRemovePossSetTwo(unittest.TestCase):
     
@@ -39,7 +39,7 @@ class TestRemovePossSetTwo(unittest.TestCase):
         self.boxes = cr.create_boxes(self.fields)
 
 
-    def test_remove_poss_set_two_row(self):
+    def test_remove_poss_just_two_row(self):
         row_1 = self.rows[1]    # The second row has a "0" in the first field
         # second row: [0, 0, 6, 8, 0, 5, 3, 0, 0]
         
@@ -54,7 +54,7 @@ class TestRemovePossSetTwo(unittest.TestCase):
         row_1[7].possible = {1,2,4}
         row_1[8].possible = {4,5,7,9}
 
-        row_1_result = rem_poss.remove_poss_set_two(row_1)
+        row_1_result = rem_poss.remove_poss_just_two(row_1)
 
         # The 1 and 2 should be removed from every field exept 0 and 4 becasue 1 and 2 have to be in 0 and 4,
         # all other possibilities should stay the same

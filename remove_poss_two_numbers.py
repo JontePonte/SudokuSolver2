@@ -1,6 +1,6 @@
 
 
-def remove_poss_set_two(list_input):
+def remove_poss_just_two(list_input):
     list_work = list_input  # create a copy of the list (not sure this does anythin)
     
     # Create a test set of every two numbers
