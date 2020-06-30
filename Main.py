@@ -37,13 +37,13 @@ while not is_solved(fields) and counter < 19:
         
         for row in rows:
             row = remove_poss_just_two(row)
-            row = remove_extra_poss_if_two(row)
+            #row = remove_extra_poss_if_two(row)
         for column in columns:
             column = remove_poss_just_two(column)
-            column = remove_extra_poss_if_two(column)
+            #column = remove_extra_poss_if_two(column)
         for box in boxes:
             box = remove_poss_just_two(box)
-            box = remove_extra_poss_if_two(box)
+            #box = remove_extra_poss_if_two(box)
         
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
