@@ -59,4 +59,4 @@ sudoku_x = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
 
 
 """ Decide which one to use """
-sudoku = sudoku_h
+sudoku = sudoku_v

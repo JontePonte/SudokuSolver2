@@ -30,6 +30,9 @@ def remove_poss_just_two(list_input):
 
 def remove_extra_poss_if_two(list_input):
     list_work = list_input  # create a copy of the list (not sure this does anythin)
+
+    if len(list_work) != 9:
+        raise ValueError("The list length need to be nine")
     
     # Create a test set of every two numbers
     for num1 in list(range(1,10)):
@@ -47,7 +50,7 @@ def remove_extra_poss_if_two(list_input):
                 for field in list_work:
                     if num1 in field.possible and num2 in field.possible:
                         ts_found_counter += 1
-                        ts_id.append(field.x)
+                        ts_id.append(field.id)
 
                     if num1 in field.possible:
                         num1_counter += 1
@@ -58,7 +61,9 @@ def remove_extra_poss_if_two(list_input):
                 # If the test set appears two times in the fields and in no other field
                 # then remove all other possibilities in the fields
                 if ts_found_counter == 2 and num1_counter == 2 and num2_counter == 2:
-                    list_work[ts_id[0]].possible = test_set
-                    list_work[ts_id[1]].possible = test_set
+                    for field in list_work:
+                        # Look up the fields based on id
+                        if field.id in ts_id:
+                            field.possible = test_set
     
     return list_work
