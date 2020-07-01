@@ -39,6 +39,10 @@ class TestRemovePossSetTwo(unittest.TestCase):
         self.boxes = cr.create_boxes(self.fields)
 
 
+    def tearDown(self):
+        print("tearDown")
+
+
     def test_remove_poss_just_two_row(self):
         row_1 = self.rows[1]    # The second row has a "0" in the first field
         # second row: [0, 0, 6, 8, 0, 5, 3, 0, 0]
@@ -96,4 +100,36 @@ class TestRemovePossSetTwo(unittest.TestCase):
         self.assertEqual(row_1_result[5].possible, {5})        
         self.assertEqual(row_1_result[6].possible, {3})        
         self.assertEqual(row_1_result[7].possible, {2,4})        
-        self.assertEqual(row_1_result[8].possible, {5,7,9})       
+        self.assertEqual(row_1_result[8].possible, {5,7,9})
+    
+    
+    def test_remove_extra_poss_if_two_box(self):
+        box_1 = self.boxes[3]    # call the forth box
+                                 # forth box:  [4, 7, 0]
+                                             # [0, 0, 0]
+                                             # [0, 6, 0]
+        
+        # All possible needs to be set manualy for this test
+        box_1[0].possible = {4}
+        box_1[1].possible = {7}
+        box_1[2].possible = {1,2,3,5,8,9}
+        box_1[3].possible = {1,2,3,5}
+        box_1[4].possible = {1,2,3,5}
+        box_1[5].possible = {1,2,3,5}
+        box_1[6].possible = {1,2,3,5,8,9}
+        box_1[7].possible = {6}
+        box_1[8].possible = {1,2,3,5}
+
+        box_1_result = rem_poss.remove_extra_poss_if_two(box_1)
+
+        # the numbers 8 and 9 only appears in field 2 and 6.
+        # all other possibilities should be removd from field 2 and 6
+        self.assertEqual(box_1_result[0].possible, {4})
+        self.assertEqual(box_1_result[1].possible, {7})        
+        self.assertEqual(box_1_result[2].possible, {8,9})        
+        self.assertEqual(box_1_result[3].possible, {1,2,3,5})        
+        self.assertEqual(box_1_result[4].possible, {1,2,3,5})        
+        self.assertEqual(box_1_result[5].possible, {1,2,3,5})        
+        self.assertEqual(box_1_result[6].possible, {8,9})        
+        self.assertEqual(box_1_result[7].possible, {6})        
+        self.assertEqual(box_1_result[8].possible, {1,2,3,5})       
