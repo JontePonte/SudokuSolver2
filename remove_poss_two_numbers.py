@@ -45,14 +45,14 @@ def remove_extra_poss_if_two(list_input):
                 # Run throu all fields and check if the test set appears in them
                 # also check if the numbers appears by the selves
                 for field in list_work:
-                    if {num1}.issubset(field.possible) and {num2}.issubset(field.possible):
+                    if num1 in field.possible and num2 in field.possible:
                         ts_found_counter += 1
                         ts_id.append(field.x)
 
-                    if {num1}.issubset(field.possible):
+                    if num1 in field.possible:
                         num1_counter += 1
 
-                    if {num2}.issubset(field.possible):
+                    if num2 in field.possible:
                         num2_counter += 1
 
                 # If the test set appears two times in the fields and in no other field
