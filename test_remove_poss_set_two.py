@@ -40,7 +40,12 @@ class TestRemovePossSetTwo(unittest.TestCase):
 
 
     def tearDown(self):
-        print("tearDown")
+        self.fields = []
+        self.fields_s = []
+
+        self.rows = []
+        self.columns = []
+        self.boxes = []
 
 
     def test_remove_poss_just_two_row(self):
