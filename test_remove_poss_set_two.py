@@ -108,7 +108,7 @@ class TestRemovePossSetTwo(unittest.TestCase):
         self.assertEqual(row_1_result[8].possible, {5,7,9})
     
     
-    def test_remove_extra_poss_if_two_box(self):
+    def test_remove_extra_poss_if_two_box1(self):
         box_1 = self.boxes[3]    # call the forth box
                                  # forth box:  [4, 7, 0]
                                              # [0, 0, 0]
@@ -137,4 +137,36 @@ class TestRemovePossSetTwo(unittest.TestCase):
         self.assertEqual(box_1_result[5].possible, {1,2,3,5})        
         self.assertEqual(box_1_result[6].possible, {8,9})        
         self.assertEqual(box_1_result[7].possible, {6})        
-        self.assertEqual(box_1_result[8].possible, {1,2,3,5})       
+        self.assertEqual(box_1_result[8].possible, {1,2,3,5})
+
+
+    def test_remove_extra_poss_if_two_box2(self):
+        box_1 = self.boxes[8]    # call the eigth box
+                                 # eigth box:  [0, 0, 0]
+                                 #             [9, 0, 3]
+                                 #             [0, 0, 7]
+        
+        # All possible needs to be set manualy for this test
+        box_1[0].possible = {1,2,3,4,5,6,7,8,9}
+        box_1[1].possible = {1,2,3,4,5,6,7,8,9}
+        box_1[2].possible = {1,2,3,4,5,6,7,8,9}
+        box_1[3].possible = {9}
+        box_1[4].possible = {1,2,3,4,5,6,7,8,9}
+        box_1[5].possible = {3}
+        box_1[6].possible = {1,2,3,4,5,6,7,8,9}
+        box_1[7].possible = {1,2,3,4,5,6,7,8,9}
+        box_1[8].possible = {7}
+
+        box_1_result = rem_poss.remove_extra_poss_if_two(box_1)
+
+        # the numbers 8 and 9 only appears in field 2 and 6.
+        # all other possibilities should be removd from field 2 and 6
+        self.assertEqual(box_1_result[0].possible, {1,2,3,4,5,6,7,8,9})
+        self.assertEqual(box_1_result[1].possible, {1,2,3,4,5,6,7,8,9})        
+        self.assertEqual(box_1_result[2].possible, {1,2,3,4,5,6,7,8,9})        
+        self.assertEqual(box_1_result[3].possible, {9})        
+        self.assertEqual(box_1_result[4].possible, {1,2,3,4,5,6,7,8,9})        
+        self.assertEqual(box_1_result[5].possible, {3})        
+        self.assertEqual(box_1_result[6].possible, {1,2,3,4,5,6,7,8,9})        
+        self.assertEqual(box_1_result[7].possible, {1,2,3,4,5,6,7,8,9})        
+        self.assertEqual(box_1_result[8].possible, {7})

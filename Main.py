@@ -24,8 +24,8 @@ boxes = create_boxes(fields)
 
 
 # Loop all the fields max 20 times and run all solving functions. 
-counter = 0
-while not is_solved(fields) and counter < 19:
+counter = 1
+while not is_solved(fields) and counter < 20:
     for field in fields:
         field.possible = simple_remove_possibilities_row(field, rows[field.y])
         field.possible = simple_remove_possibilities_column(field, columns[field.x])
@@ -52,9 +52,9 @@ while not is_solved(fields) and counter < 19:
 
 print(" ")
 if is_solved(fields):
-    print("The sudoku was solved after", str(counter+1), "iterations")
+    print("The sudoku was solved after", str(counter), "iterations")
 else:
-    print("The sudoku was not solved after", str(counter+1), "iterations")
+    print("The sudoku was not solved after", str(counter), "iterations")
     print(count_zeros(fields), "unsolved fields")
 
 # The original and the hopfully solved sudoku are printed side by side
