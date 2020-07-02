@@ -27,14 +27,18 @@ boxes = create_boxes(fields)
 counter = 1
 while not is_solved(fields) and counter < 20:
     for field in fields:
+        # Remove possibilities if field if they appears in the same row, colomn or box
         field.possible = simple_remove_possibilities_row(field, rows[field.y])
         field.possible = simple_remove_possibilities_column(field, columns[field.x])
         field.possible = simple_remove_possibilities_box(field, boxes[field.box])
 
+        # Remove all other possibilities if a possibility only appears ones in a row, column or box
         field.possible = find_single_possibilities(field, rows[field.y])
         field.possible = find_single_possibilities(field, columns[field.x])
         field.possible = find_single_possibilities(field, boxes[field.box])
         
+        # If a pair of two possibilities just appears in two fields in a row, column or box then remove them from all other
+        # them from all other fields in that row, column or box
         for row in rows:
             row = remove_poss_just_two(row)
         for column in columns:
@@ -42,6 +46,8 @@ while not is_solved(fields) and counter < 20:
         for box in boxes:
             box = remove_poss_just_two(box)
         
+        # Remove extra possibilities in a field if two of the possibilities just appear in one other
+        # field in the row, column or box
         field.possible = remove_extra_poss_field(field, rows[field.y])
         field.possible = remove_extra_poss_field(field, columns[field.x])
         field.possible = remove_extra_poss_field(field, boxes[field.box])
