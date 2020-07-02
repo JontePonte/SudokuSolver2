@@ -44,7 +44,7 @@ while not is_solved(fields) and counter < 20:
         for box in boxes:
             box = remove_poss_just_two(box)
             #box = remove_extra_poss_if_two(box)
-        
+
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
     counter += 1

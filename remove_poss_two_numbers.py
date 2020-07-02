@@ -28,6 +28,11 @@ def remove_poss_just_two(list_input):
     return list_work
 
 
+def remove_extra_poss_field(field, list):
+    """ Remove extra possibilities in a field if two of the possibilities just appear in one other field once """
+    return field.possible
+
+
 def remove_extra_poss_if_two(list_input):
     list_work = list_input  # create a copy of the list (not sure this does anythin)
 
@@ -46,7 +51,7 @@ def remove_extra_poss_if_two(list_input):
                 ts_found_counter = 0
                 ts_id = []
                 # Run throu all fields and check if the test set appears in them
-                # also check if the numbers appears by the selves
+                # also check if the numbers appears by them selves
                 for field in list_work:
                     if num1 in field.possible and num2 in field.possible:
                         ts_found_counter += 1
