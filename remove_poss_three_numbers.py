@@ -1,3 +1,5 @@
+import itertools
+
 
 def remove_poss_just_three(list_input):
     """ If a set of three possibilities only exists in tree fields then remove them from every other field """
@@ -32,10 +34,10 @@ def remove_poss_just_three(list_input):
 
 
 def remove_extra_poss3_field(field, list):
-    """ Remove extra possibilities in a field if two of the possibilities just appear in one other field once """
+    """ Remove extra possibilities in a field if three of the possibilities just appear in two other fields and nowhare else """
     
-    if len(field.possible) <= 2:
-        # No need to remove anything if there is just one or two possibilities
+    if len(field.possible) <= 3:
+        # No need to remove anything if there is just one, two or three possibilities
         return field.possible
     
     if len(list) != 9:
@@ -43,32 +45,27 @@ def remove_extra_poss3_field(field, list):
     
     possible = field.possible
 
-    for poss1 in field.possible:
-        for poss2 in field.possible:
-            # This creates sets of two of the possibilities (two many but ok for now)
-            if poss1 != poss2:
+    # Create a list of all subset of length 3 in possible
+    combos_of_three = [set(i) for i in itertools.combinations(possible, 3)]
 
-                both_found_counter = 0
-                poss1_found_counter = 0
-                poss2_found_counter = 0
+    for poss_set in combos_of_three:
 
-                for other_field in list:
-                    # loop all ther field in the list
-                    if other_field.id != field.id:
-                        # Count the times both appear in the other field
-                        if poss1 in other_field.possible and poss2 in other_field.possible:
-                            both_found_counter += 1
-                        
-                        # Count the time each one appears in the other field
-                        if poss1 in other_field.possible:
-                            poss1_found_counter += 1
+        all_found_counter = 0
+        no_found_counter = 0
 
-                        if poss2 in other_field.possible:
-                            poss2_found_counter += 1
+        for other_field in list:
+            # loop all ther field in the list
+            if other_field.id != field.id:
+                # Count the times the whole set appears and not appears at all in the other fields
+                if other_field.possible.issuperset(poss_set):
+                    all_found_counter += 1
+                if other_field.possible.isdisjoint(poss_set):
+                    no_found_counter += 1
 
-                # If the two possibilities just appears in one other field and in no other field then remove!
-                if both_found_counter == 1 and poss1_found_counter == 1 and poss2_found_counter == 1:
-                    possible = {poss1, poss2}
+        # If the three possibilities just appears in two other field and in no other field then remove!
+        if all_found_counter == 2 and no_found_counter == 6:
+            possible = poss_set
+            return possible
 
     return possible
 

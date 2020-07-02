@@ -13,7 +13,7 @@ from find_single_possibilities import find_single_possibilities
 from remove_poss_two_numbers import (remove_poss_just_two, 
                                      remove_extra_poss_field)
 from remove_poss_three_numbers import (remove_poss_just_three,
-                                       remove_poss_just_three)
+                                       remove_extra_poss3_field)
 
 
 # Create field objects for the sudoku
@@ -63,6 +63,12 @@ while not is_solved(fields) and counter < 20:
             column = remove_poss_just_three(column)
         for box in boxes:
             box = remove_poss_just_three(box)
+        
+        # Remove extra possibilities in a field if three of the possibilities just appear in two other
+        # field in the row, column or box
+        field.possible = remove_extra_poss3_field(field, rows[field.y])
+        field.possible = remove_extra_poss3_field(field, columns[field.x])
+        field.possible = remove_extra_poss3_field(field, boxes[field.box])
         
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
