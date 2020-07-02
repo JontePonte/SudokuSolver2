@@ -10,7 +10,10 @@ from simple_remove_possibilities import (simple_remove_possibilities_row,
                                          simple_remove_possibilities_column, 
                                          simple_remove_possibilities_box)
 from find_single_possibilities import find_single_possibilities
-from remove_poss_two_numbers import remove_poss_just_two, remove_extra_poss_field
+from remove_poss_two_numbers import (remove_poss_just_two, 
+                                     remove_extra_poss_field)
+from remove_poss_three_numbers import (remove_poss_just_three,
+                                       remove_poss_just_three)
 
 
 # Create field objects for the sudoku
@@ -51,7 +54,16 @@ while not is_solved(fields) and counter < 20:
         field.possible = remove_extra_poss_field(field, rows[field.y])
         field.possible = remove_extra_poss_field(field, columns[field.x])
         field.possible = remove_extra_poss_field(field, boxes[field.box])
-
+        
+        # If a pair of tree possibilities just appears in three fields in a row, column or box then remove them from all other
+        # them from all other fields in that row, column or box
+        for row in rows:
+            row = remove_poss_just_three(row)
+        for column in columns:
+            column = remove_poss_just_three(column)
+        for box in boxes:
+            box = remove_poss_just_three(box)
+        
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
     counter += 1

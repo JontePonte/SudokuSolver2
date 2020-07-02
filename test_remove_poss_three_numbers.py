@@ -108,42 +108,42 @@ class TestRemovePossSetThree(unittest.TestCase):
 
 
     def test_remove_extra_poss3_field_REMOVE(self):
-        row_1 = self.rows[1]    # The second row has a "0" in the first field
-        # second row: [0, 0, 6, 8, 0, 5, 3, 0, 0]
+        row_1 = self.rows[4]    # The fifth row has a "0" in the first field and only two set numbers
+        # fifth row: [0, 0, 0, 9, 0, 0, 0, 3, 0]
         
         # All possible needs to be set manualy for this test
-        row_1[0].possible = {1,2,4,7,9}
-        row_1[1].possible = {1,5,7,9}
-        row_1[2].possible = {6}
-        row_1[3].possible = {8}
-        row_1[4].possible = {1,7}
-        row_1[5].possible = {5}
-        row_1[6].possible = {3}
-        row_1[7].possible = {2,4}
-        row_1[8].possible = {5,7,9}
+        row_1[0].possible = {1,2,4,5,6,7,8}
+        row_1[1].possible = {1,2,7,8}
+        row_1[2].possible = {1,2,7,8}
+        row_1[3].possible = {9}
+        row_1[4].possible = {1,2,4,5,6,7,8}
+        row_1[5].possible = {1,2,7,8}
+        row_1[6].possible = {1,2,7,8}
+        row_1[7].possible = {3}
+        row_1[8].possible = {1,2,4,5,6,7,8}
 
         row_1[0].possible = rem_poss.remove_extra_poss3_field(row_1[0], row_1)
 
-        # All possibilities exept 2 and 4 should be removed becase they only appears in the field[0] and field[7]
-        self.assertEqual(row_1[0].possible, {2,4})
+        # All possibilities exept 4,5,6 should be removed because they only also exists in field[4] and field[8]
+        self.assertEqual(row_1[0].possible, {4,5,6})
 
 
     def test_remove_extra_poss3_field_DONT(self):
-        row_1 = self.rows[1]    # The second row has a "0" in the first field
-        # second row: [0, 0, 6, 8, 0, 5, 3, 0, 0]
+        row_1 = self.rows[4]    # The fifth row has a "0" in the first field and only two set numbers
+        # fifth row: [0, 0, 0, 9, 0, 0, 0, 3, 0]
         
         # All possible needs to be set manualy for this test
-        row_1[0].possible = {1,2,4,7,9}
-        row_1[1].possible = {1,5,7,9}
-        row_1[2].possible = {6}
-        row_1[3].possible = {8}
-        row_1[4].possible = {1,2,7}     # 2 i a possibility in the fifth row
-        row_1[5].possible = {5}
-        row_1[6].possible = {3}
-        row_1[7].possible = {2,4}
-        row_1[8].possible = {5,7,9}
+        row_1[0].possible = {1,2,4,5,6,7,8}
+        row_1[1].possible = {1,2,7,8}
+        row_1[2].possible = {1,2,7,8}
+        row_1[3].possible = {9}
+        row_1[4].possible = {1,2,4,5,6,7,8}
+        row_1[5].possible = {1,2,7,8}
+        row_1[6].possible = {1,2,4,7,8}
+        row_1[7].possible = {3}
+        row_1[8].possible = {1,2,4,5,6,7,8}
 
         row_1[0].possible = rem_poss.remove_extra_poss3_field(row_1[0], row_1)
 
-        # No possibilities should be removed for this one because 2 appears in three fields
-        self.assertEqual(row_1[0].possible, {1,2,4,7,9})
+        # No changes should be made becase no set of three numbers appears in only three fields
+        self.assertEqual(row_1[0].possible, {1,2,4,5,6,7,8})
