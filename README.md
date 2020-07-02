@@ -30,8 +30,13 @@ Same as version 1 for now
     - [x] Implement relevant unit tests on all functions
 - [x] Create a more advance solution method
     - [x] Add more advanced sudoku to test on
-    - [x] Remove possible numbers based on combinations of numbers elsewere
+    - [x] Remove possible numbers based on combinations of two numbers in rows, columns and boxes
 - [ ] Create a very advanced solution method
-    - [x] Add even more advanced sudoku to test on
+    - [x] Add even more advanced sudokus to test on
+    - [ ] Remove possible numbers based on combination of tree numbers in rows, columns and boxes
+    - [ ] Possibly combinations of even more numbers
     - [ ] Test numbers if the other methods fail
-- [ ] Better input for the sudoku
+- [ ] Better UI
+    - [ ] Improve input of new sudokus
+    - [ ] Make the output nicer
+- [ ] Make the solver web based
