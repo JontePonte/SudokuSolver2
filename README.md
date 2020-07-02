@@ -28,9 +28,9 @@ Same as version 1 for now
     - [x] Create a folder and file structure for unit tests
     - [x] Test a unit test on one of the functions
     - [x] Implement relevant unit tests on all functions
-- [ ] Create a more advance solution method
+- [x] Create a more advance solution method
     - [x] Add more advanced sudoku to test on
-    - [ ] Remove possible numbers based on combinations of numbers elsewere
+    - [x] Remove possible numbers based on combinations of numbers elsewere
 - [ ] Create a very advanced solution method
     - [x] Add even more advanced sudoku to test on
     - [ ] Test numbers if the other methods fail
