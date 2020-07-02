@@ -30,7 +30,44 @@ def remove_poss_just_two(list_input):
 
 def remove_extra_poss_field(field, list):
     """ Remove extra possibilities in a field if two of the possibilities just appear in one other field once """
-    return field.possible
+    
+    if len(field.possible) <= 2:
+        # No need to remove anything if there is just one or two possibilities
+        return field.possible
+    
+    if len(list) != 9:
+        raise ValueError("The list length need to be nine")
+    
+    possible = field.possible
+
+    for poss1 in field.possible:
+        for poss2 in field.possible:
+            # This creates sets of two of the possibilities (two many but ok for now)
+            if poss1 != poss2:
+
+                both_found_counter = 0
+                poss1_found_counter = 0
+                poss2_found_counter = 0
+
+                for other_field in list:
+                    # loop all ther field in the list
+                    if other_field.id != field.id:
+                        # Count the times both appear in the other field
+                        if poss1 in other_field.possible and poss2 in other_field.possible:
+                            both_found_counter += 1
+                        
+                        # Count the time each one appears in the other field
+                        if poss1 in other_field.possible:
+                            poss1_found_counter += 1
+
+                        if poss2 in other_field.possible:
+                            poss2_found_counter += 1
+
+                # If the two possibilities just appears in one other field and in no other field then remove!
+                if both_found_counter == 1 and poss1_found_counter == 1 and poss2_found_counter == 1:
+                    possible = {poss1, poss2}
+
+    return possible
 
 
 def remove_extra_poss_if_two(list_input):
