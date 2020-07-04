@@ -103,6 +103,8 @@ def copy_fields(fields):
         f.x = field.x
         f.y = field.y
         f.box = field.box
+        f.id = field.id
+
         f.number = field.number
         f.possible = field.possible
 
