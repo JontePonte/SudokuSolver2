@@ -2,8 +2,16 @@
 
 from Sudokus import sudoku          # The sudoku is chosen in the Sudokus file
 from FieldClass import Field
-from auxiliary_functions import (load_sudoku, check_field_possible_number, is_solved, count_zeros, print_sudoku, print_two_sudokus)
-from create_rows_columns_boxes import create_rows, create_columns, create_boxes
+from auxiliary_functions import (load_sudoku, 
+                                 check_field_possible_number, 
+                                 is_solved, 
+                                 count_zeros, 
+                                 print_sudoku,
+                                 copy_fields,
+                                 print_two_sudokus)
+from create_rows_columns_boxes import create_rows, 
+                                      create_columns, 
+                                      create_boxes
 
 # Solving functions
 from simple_remove_possibilities import (simple_remove_possibilities_row, 
