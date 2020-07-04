@@ -21,6 +21,7 @@ from remove_poss_two_numbers import (remove_poss_just_two,
                                      remove_extra_poss_field)
 from remove_poss_three_numbers import (remove_poss_just_three,
                                        remove_extra_poss3_field)
+from guess_and_try_possibilities import guess_and_try
 
 
 # Create field objects for the sudoku
@@ -80,6 +81,9 @@ while not is_solved(fields) and counter < 20:
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
     counter += 1        
+
+if not is_solved(fields):
+    fields = guess_and_try(fields)
 
 print(" ")
 if is_solved(fields):

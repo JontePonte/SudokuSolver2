@@ -23,7 +23,7 @@ def try_guess(fields):
 
     # Loop all the fields max 10 times and run all solving functions. 
     counter = 1
-    while not is_solved(fields) and counter < 10:
+    while not is_solved(fields) and counter < 20:
         for field in fields:
             # Remove possibilities if field if they appears in the same row, colomn or box
             field.possible = simple_remove_possibilities_row(field, rows[field.y])
@@ -76,16 +76,24 @@ def guess_and_try(fields):
     """ Create copy of the fields, guess one possibility and try if it works """
     fields_c = copy_fields(fields)
     
-    field_2poss = []
+    fields_2poss = []
 
-    for field in fields:
+    for field in fields_c:
         # Store all fields with two possibilities
         if len(field.possible) == 2:
-            field_2poss.append(field)
+            fields_2poss.append(field)
 
-    if len(field_2poss) == 0:
+    if len(fields_2poss) == 0:
         # Break if there is no fields with two possibilities
         print("Guess and Try: No fields had two possibilities")
         return fields
     
-    
+    field_2poss = fields_2poss[0]
+
+    print(list(field_2poss.possible))
+    field_2poss.possible = {list(field_2poss.possible)[0]}
+    field_2poss.number = list(field_2poss.possible)[0]
+
+    try_guess(fields_c)
+
+    return fields_c
