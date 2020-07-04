@@ -94,6 +94,23 @@ def count_zeros(fields):
     return num_zero
 
 
+def copy_fields(fields):
+    """ Create a copy of the fields in the list called "fields" """
+    fields_c = []
+    for field in fields:
+        # copy all values in the fields and append them to copy list
+        f = Field()
+        f.x = field.x
+        f.y = field.y
+        f.box = field.box
+        f.number = field.number
+        f.possible = field.possible
+
+        fields_c.append(f)
+    
+    return fields_c
+
+
 def print_sudoku(fields):
     """ Print the list of fields in a nice sudoku-like way"""
     output = []
