@@ -33,9 +33,8 @@ Same as version 1 for now
     - [x] Remove possible numbers based on combinations of two numbers in rows, columns and boxes
 - [ ] Create a very advanced solution method
     - [x] Add even more advanced sudokus to test on
-    - [ ] Remove possible numbers based on combination of tree numbers in rows, columns and boxes
-    - [ ] Possibly combinations of even more numbers
-    - [ ] Test numbers if the other methods fail
+    - [x] Remove possible numbers based on combination of tree numbers in rows, columns and boxes
+    - [ ] Guess numbers if the other methods fail
 - [ ] Better UI
     - [ ] Improve input of new sudokus
     - [ ] Make the output nicer

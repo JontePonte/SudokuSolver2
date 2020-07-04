@@ -72,8 +72,7 @@ while not is_solved(fields) and counter < 20:
         
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
-    counter += 1
-
+    counter += 1        
 
 print(" ")
 if is_solved(fields):
