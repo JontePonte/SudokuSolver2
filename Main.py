@@ -7,7 +7,6 @@ from auxiliary_functions import (load_sudoku,
                                  is_solved, 
                                  count_zeros, 
                                  print_sudoku,
-                                 copy_fields,
                                  print_two_sudokus)
 from create_rows_columns_boxes import (create_rows, 
                                       create_columns, 
