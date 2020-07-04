@@ -9,9 +9,9 @@ from auxiliary_functions import (load_sudoku,
                                  print_sudoku,
                                  copy_fields,
                                  print_two_sudokus)
-from create_rows_columns_boxes import create_rows, 
+from create_rows_columns_boxes import (create_rows, 
                                       create_columns, 
-                                      create_boxes
+                                      create_boxes)
 
 # Solving functions
 from simple_remove_possibilities import (simple_remove_possibilities_row, 
