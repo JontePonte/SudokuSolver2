@@ -21,7 +21,7 @@ from remove_poss_two_numbers import (remove_poss_just_two,
                                      remove_extra_poss_field)
 from remove_poss_three_numbers import (remove_poss_just_three,
                                        remove_extra_poss3_field)
-from guess_and_try_possibilities import guess_and_try
+from recursive_solution import RecursivSolv
 
 
 # Create field objects for the sudoku
@@ -83,7 +83,7 @@ while not is_solved(fields) and counter < 20:
     counter += 1        
 
 #if not is_solved(fields):
-#    fields = guess_and_try(fields)
+#    sudo = RecursivSolv(fields)
 
 print(" ")
 if is_solved(fields):

@@ -17,8 +17,7 @@ class RecursivSolv:
         # Run solution algoritm
         self.startSolution()
         
-        return self.sudoku_num
-        
+        print(self.sudoku_num)
 
     def startSolution(self, i=0, j=0):
         i,j = self.findNextCellToFill(i, j)
