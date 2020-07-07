@@ -82,8 +82,8 @@ while not is_solved(fields) and counter < 20:
         field.number = check_field_possible_number(field)
     counter += 1        
 
-if not is_solved(fields):
-    fields = guess_and_try(fields)
+#if not is_solved(fields):
+#    fields = guess_and_try(fields)
 
 print(" ")
 if is_solved(fields):

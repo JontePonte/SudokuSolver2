@@ -74,8 +74,7 @@ def try_guess(fields):
 
 def guess_and_try(fields):
     """ Create copy of the fields, guess one possibility and try if it works """
-    fields_c = copy_fields(fields)
-    
+
     fields_2poss = []
 
     for field in fields_c:
@@ -88,9 +87,11 @@ def guess_and_try(fields):
         print("Guess and Try: No fields had two possibilities")
         return fields
     
-    field_2poss = fields_2poss[0]
+    for field in fields_2poss:
+        for poss in field.possible:
+            fields_c1 = copy_fields(fields)
+            field_2poss = fields_2poss[0]
 
-    print(list(field_2poss.possible))
     field_2poss.possible = {list(field_2poss.possible)[0]}
     field_2poss.number = list(field_2poss.possible)[0]
 
