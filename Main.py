@@ -63,7 +63,10 @@ while not is_solved(fields) and counter < 20:
         field.possible = remove_extra_poss_field(field, columns[field.x])
         field.possible = remove_extra_poss_field(field, boxes[field.box])
         
-        # If a pair of tree possibilities just appears in three fields in a row, column or box then remove them from all other
+        """ The functions testing three solutions are commented out to increase prefomance
+            All sudokus can be solved using the recursive solution instead
+        
+        # If a pair of three possibilities just appears in three fields in a row, column or box then remove them from all other
         # them from all other fields in that row, column or box
         for row in rows:
             row = remove_poss_just_three(row)
@@ -77,17 +80,24 @@ while not is_solved(fields) and counter < 20:
         field.possible = remove_extra_poss3_field(field, rows[field.y])
         field.possible = remove_extra_poss3_field(field, columns[field.x])
         field.possible = remove_extra_poss3_field(field, boxes[field.box])
+        """
         
         # Set the finds number if there is only one possibility
         field.number = check_field_possible_number(field)
     counter += 1        
 
-#if not is_solved(fields):
-#    sudo = RecursivSolv(fields)
+used_recursive = False
+if not is_solved(fields):
+    used_recursive = True
+    sudo = RecursivSolv(fields)
+    fields = load_sudoku(sudo.sudoku_num)
 
 print(" ")
 if is_solved(fields):
-    print("The sudoku was solved after", str(counter), "iterations")
+    if not used_recursive:
+        print("The sudoku was solved after", str(counter), "iterations")
+    else:
+        print("The sudoku was solved after", str(counter), "iterations and used recursive solution")
 else:
     print("The sudoku was not solved after", str(counter), "iterations")
     print(count_zeros(fields), "unsolved fields")

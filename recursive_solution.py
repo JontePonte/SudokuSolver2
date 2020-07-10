@@ -1,6 +1,6 @@
 
 class RecursivSolv:
-    """ Recursivly solving method  """
+    """ Recursiv solving method """
     
     def __init__(self, fields):
         self.counter = 0
@@ -17,7 +17,6 @@ class RecursivSolv:
         # Run solution algoritm
         self.startSolution()
         
-        print(self.sudoku_num)
 
     def startSolution(self, i=0, j=0):
         i,j = self.findNextCellToFill(i, j)
@@ -27,11 +26,11 @@ class RecursivSolv:
             return True
         for e in range(1,10):
             if self.isValid(i,j,e):
-                self.sudoku_num[i][j].set(e)
+                self.sudoku_num[i][j] = e
                 if self.startSolution(i, j):
                     return True
                 # Undo the current cell for backtracking
-                self.sudoku_num[i][j].set(0)
+                self.sudoku_num[i][j] = 0
         return False
     
 
@@ -41,12 +40,12 @@ class RecursivSolv:
         self.counter += 1
         for x in range(i,9):
             for y in range(j,9):
-                if self.sudoku_num[x][y].get() == '0':
+                if self.sudoku_num[x][y] == 0:
                     return x,y
 
         for x in range(0,9):
             for y in range(0,9):
-                if self.sudoku_num[x][y].get() == '0':
+                if self.sudoku_num[x][y] == 0:
                     return x,y
 
         return -1,-1
@@ -56,18 +55,18 @@ class RecursivSolv:
     def isValid(self, i, j, e):
         
         for x in range(9):
-            if self.sudoku_num[i][x].get() == str(e):
+            if self.sudoku_num[i][x] == e:
                 return False
 
         for x in range(9):
-            if self.sudoku_num[x][j].get() == str(e):
+            if self.sudoku_num[x][j] == e:
                 return False
 
         # Finding the Top x,y Co-ordinates of the section containing the i,j cell    
         secTopX, secTopY = 3 *int((i/3)), 3 *int((j/3))
         for x in range(secTopX, secTopX+3):
             for y in range(secTopY, secTopY+3):
-                if self.sudoku_num[x][y].get() == str(e):
+                if self.sudoku_num[x][y] == e:
                     return False
         
         return True
