@@ -31,10 +31,10 @@ Same as version 1 for now
 - [x] Create a more advance solution method
     - [x] Add more advanced sudoku to test on
     - [x] Remove possible numbers based on combinations of two numbers in rows, columns and boxes
-- [ ] Create a very advanced solution method
+- [x] Create a very advanced solution method
     - [x] Add even more advanced sudokus to test on
     - [x] Remove possible numbers based on combination of tree numbers in rows, columns and boxes
-    - [ ] Guess numbers if the other methods fail
+    - [x] Guess numbers with brute force solution if the other methods fail
 - [ ] Better UI
     - [ ] Improve input of new sudokus
     - [ ] Make the output nicer
