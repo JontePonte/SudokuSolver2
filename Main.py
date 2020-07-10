@@ -63,8 +63,9 @@ while not is_solved(fields) and counter < 20:
         field.possible = remove_extra_poss_field(field, columns[field.x])
         field.possible = remove_extra_poss_field(field, boxes[field.box])
         
-        """ The functions testing three solutions are commented out to increase prefomance
-            All sudokus can be solved using the recursive solution instead
+        """ 
+                The functions testing three solutions are commented out to increase prefomance
+                All sudokus can be solved using the recursive solution instead
         
         # If a pair of three possibilities just appears in three fields in a row, column or box then remove them from all other
         # them from all other fields in that row, column or box
@@ -80,6 +81,7 @@ while not is_solved(fields) and counter < 20:
         field.possible = remove_extra_poss3_field(field, rows[field.y])
         field.possible = remove_extra_poss3_field(field, columns[field.x])
         field.possible = remove_extra_poss3_field(field, boxes[field.box])
+        
         """
         
         # Set the finds number if there is only one possibility
@@ -106,6 +108,7 @@ if is_solved(fields):
 else:
     print("The sudoku was not solved after", str(counter), "iterations")
     print(count_zeros(fields), "unsolved fields")
+
 
 # The original and the hopfully solved sudoku are printed side by side
 print_two_sudokus(fields_old, fields)
