@@ -25,7 +25,7 @@ class RecursivSolv:
         if i == -1:
             return True
         for e in range(1,10):
-            if self.isValid(i,j,e):
+            if self.isValid(i,j,e) and self.counter < 500000 :
                 self.sudoku_num[i][j] = e
                 if self.startSolution(i, j):
                     return True

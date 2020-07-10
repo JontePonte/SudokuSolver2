@@ -101,7 +101,8 @@ if is_solved(fields):
     if not used_recursive:
         print("The sudoku was solved after", str(counter), "iterations")
     else:
-        print("The sudoku was solved after", str(counter), "iterations and used recursive solution")
+        print("The sudoku was solved after", str(counter), "iterations")
+        print( "and used recursive solution (", str(sudo.counter), "interations )")
 else:
     print("The sudoku was not solved after", str(counter), "iterations")
     print(count_zeros(fields), "unsolved fields")
