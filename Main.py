@@ -86,11 +86,15 @@ while not is_solved(fields) and counter < 20:
         field.number = check_field_possible_number(field)
     counter += 1        
 
-used_recursive = False
+
+# If the solution method cant solve the sudoku in 20 iterations the recursive solution kiks in
 if not is_solved(fields):
     used_recursive = True
-    sudo = RecursivSolv(fields)
-    fields = load_sudoku(sudo.sudoku_num)
+    sudo = RecursivSolv(fields)             # Call recursive solution method
+    fields = load_sudoku(sudo.sudoku_num)   # Update fields from RecursiveSolve output
+else:
+    used_recursive = False                  # Just for print output
+
 
 print(" ")
 if is_solved(fields):
