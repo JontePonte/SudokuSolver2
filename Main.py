@@ -13,9 +13,7 @@ from create_rows_columns_boxes import (create_rows,
                                       create_boxes)
 
 # Solving functions
-from simple_remove_possibilities import (simple_remove_possibilities_row, 
-                                         simple_remove_possibilities_column, 
-                                         simple_remove_possibilities_box)
+from simple_remove_possibilities import simple_remove_possibilities
 from find_single_possibilities import find_single_possibilities
 from remove_poss_two_numbers import (remove_poss_just_two, 
                                      remove_extra_poss_field)
@@ -39,9 +37,9 @@ counter = 1
 while not is_solved(fields) and counter < 20:
     for field in fields:
         # Remove possibilities if field if they appears in the same row, colomn or box
-        field.possible = simple_remove_possibilities_row(field, rows[field.y])
-        field.possible = simple_remove_possibilities_column(field, columns[field.x])
-        field.possible = simple_remove_possibilities_box(field, boxes[field.box])
+        field.possible = simple_remove_possibilities(field, rows[field.y])
+        field.possible = simple_remove_possibilities(field, columns[field.x])
+        field.possible = simple_remove_possibilities(field, boxes[field.box])
 
         # Remove all other possibilities if a possibility only appears ones in a row, column or box
         field.possible = find_single_possibilities(field, rows[field.y])
@@ -103,8 +101,8 @@ if is_solved(fields):
     if not used_recursive:
         print("The sudoku was solved after", str(counter), "iterations")
     else:
-        print("The sudoku was solved after", str(counter), "iterations")
-        print( "and used recursive solution (", str(sudo.counter), "interations )")
+        print("The sudoku was solved after", str(counter), "normal iterations")
+        print( "and", str(sudo.counter), "recursive solution interations")
 else:
     print("The sudoku was not solved after", str(counter), "iterations")
     print(count_zeros(fields), "unsolved fields")
