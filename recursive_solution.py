@@ -25,7 +25,8 @@ class RecursivSolv:
         if i == -1:
             return True
         if self.counter > 250000:
-            raise ValueError("The sudoku Could not be solved")
+            # Break if the soler fails
+            raise ValueError("The sudoku Could not be solved. There is probalbly something wrong with the input")
         for e in range(1,10):
             if self.isValid(i,j,e):
                 self.sudoku_num[i][j] = e
