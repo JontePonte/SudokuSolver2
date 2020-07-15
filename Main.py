@@ -1,94 +1,52 @@
-""" Main file for SudokuSolver2"""
+import tkinter as tk
+import tkinter.ttk as ttk
 
-from Sudokus import sudoku as sudoku_import          # The sudoku is chosen in the Sudokus file
-from FieldClass import Field
-from auxiliary_functions import (load_sudoku, 
-                                 check_field_possible_number, 
-                                 is_solved, 
-                                 count_zeros, 
-                                 print_sudoku,
-                                 print_two_sudokus)
-from create_rows_columns_boxes import (create_rows, 
-                                      create_columns, 
-                                      create_boxes)
+from Main_solver import solve_sudoku
+from Sudokus import sudoku
 
-# Solving functions
-from simple_remove_possibilities import simple_remove_possibilities
-from find_single_possibilities import find_single_possibilities
-from remove_poss_two_numbers import (remove_poss_just_two, 
-                                     remove_extra_poss_field)
-from remove_poss_three_numbers import (remove_poss_just_three,
-                                       remove_extra_poss3_field)
-from recursive_solution import RecursivSolv
+# Create a window object
+window = tk.Tk()
+window.geometry('500x500')
 
-def solve_sudoku(sudoku):
-    # Create field objects for the sudoku
-    fields = load_sudoku(sudoku)
-    fields_old = load_sudoku(sudoku)
-
-    # Create lists for all rows, column and boxes
-    rows = create_rows(fields)
-    columns = create_columns(fields)
-    boxes = create_boxes(fields)
-
-
-    # Loop all the fields max 20 times and run all solving functions. 
-    counter = 1
-    while not is_solved(fields) and counter < 20:
-        for field in fields:
-            # Remove possibilities if field if they appears in the same row, colomn or box
-            field.possible = simple_remove_possibilities(field, rows[field.y])
-            field.possible = simple_remove_possibilities(field, columns[field.x])
-            field.possible = simple_remove_possibilities(field, boxes[field.box])
-
-            # Remove all other possibilities if a possibility only appears ones in a row, column or box
-            field.possible = find_single_possibilities(field, rows[field.y])
-            field.possible = find_single_possibilities(field, columns[field.x])
-            field.possible = find_single_possibilities(field, boxes[field.box])
-            
-            # If a pair of two possibilities just appears in two fields in a row, column or box then remove them from all other
-            # them from all other fields in that row, column or box
-            for row in rows:
-                row = remove_poss_just_two(row)
-            for column in columns:
-                column = remove_poss_just_two(column)
-            for box in boxes:
-                box = remove_poss_just_two(box)
-            
-            # Remove extra possibilities in a field if two of the possibilities just appear in one other
-            # field in the row, column or box
-            field.possible = remove_extra_poss_field(field, rows[field.y])
-            field.possible = remove_extra_poss_field(field, columns[field.x])
-            field.possible = remove_extra_poss_field(field, boxes[field.box])
-            
-            # Set the finds number if there is only one possibility
-            field.number = check_field_possible_number(field)
-        counter += 1        
-
-
-    # If the solution method cant solve the sudoku in 20 iterations the recursive solution kiks in
-    if not is_solved(fields):
-        used_recursive = True
-        sudo = RecursivSolv(fields)             # Call recursive solution method
-        fields = load_sudoku(sudo.sudoku_num)   # Update fields from RecursiveSolve output
-    else:
-        used_recursive = False                  # Just for print output
-
-
-    print(" ")
-    if is_solved(fields):
-        if not used_recursive:
-            print("The sudoku was solved after", str(counter), "iterations")
+for i in range(0,9):
+    # Make the window scalable
+    window.columnconfigure(i, weight=1, minsize=50)
+    window.rowconfigure(i, weight=1, minsize=50)
+    for j in range(0,9):
+        
+        # Create a 3x3 color grid
+        if (i < 3 or i > 5) and (j < 3 or j > 5):
+            color = 'gray80'
+        elif i in [3,4,5] and j in [3,4,5]:
+            color = 'gray80'
         else:
-            print("The sudoku was solved after", str(counter), "normal iterations")
-            print( "and", str(sudo.counter), "recursive solution interations")
-    else:
-        print("The sudoku was not solved after", str(counter), "iterations")
-        print(count_zeros(fields), "unsolved fields")
+            color = 'white'
+        
+        # The entry box are framed by a frame
+        frame = tk.Frame(
+            master=window,
+            bg=color,
+            padx=5,
+            pady=5
+        )
+        frame.grid(
+            row=i,
+            column=j
+        )
+
+        # Combobox create a dropdown menu
+        box_ent = ttk.Combobox(master=frame)
+        box_ent["values"] = ("",1,2,3,4,5,6,7,8,9)
+        box_ent.pack(padx=5, pady=10)
 
 
-    # The original and the hopfully solved sudoku are printed side by side
-    print_two_sudokus(fields_old, fields)
+# Create an event handler
+def handle_keypress(event):
+    """Print the character associated to the key pressed"""
+    print(event.char)
 
+# Bind keypress event to handle_keypress()
+window.bind("<Key>", handle_keypress)
 
-solve_sudoku(sudoku_import)
+# Run the event loop
+window.mainloop()
