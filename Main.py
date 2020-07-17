@@ -3,6 +3,17 @@ import tkinter.ttk as ttk
 
 from Main_solver import solve_sudoku
 from Sudokus import sudoku
+from auxiliary_functions import print_two_sudokus, load_sudoku
+
+sudoku_old = sudoku
+
+# Create an event handler
+def correctGrid(num):
+    if num == '':
+        sudoku[i][j]
+    else:
+        sudoku[i][j] = int(num)    
+
 
 # Create a window object
 window = tk.Tk()
@@ -37,16 +48,20 @@ for i in range(0,9):
         # Combobox create a dropdown menu
         box_ent = ttk.Combobox(master=frame)
         box_ent["values"] = ("",1,2,3,4,5,6,7,8,9)
+        box_ent.current(sudoku[i][j])
+        num = box_ent.get()
+
+        #box_ent.bind('<Motion>', correctGrid(num))
+        #box_ent.bind('<key>', correctGrid(num))
+        box_ent.bind('<Button-1>', correctGrid(num))
+
         box_ent.pack(padx=5, pady=10)
 
 
-# Create an event handler
-def handle_keypress(event):
-    """Print the character associated to the key pressed"""
-    print(event.char)
-
-# Bind keypress event to handle_keypress()
-window.bind("<Key>", handle_keypress)
-
 # Run the event loop
 window.mainloop()
+
+fields = load_sudoku(sudoku)
+fields_old = load_sudoku(sudoku_old)
+
+print_two_sudokus(fields_old, fields)
