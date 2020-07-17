@@ -6,6 +6,7 @@ from Sudokus import sudoku
 from auxiliary_functions import print_two_sudokus, load_sudoku
 
 sudoku_old = sudoku
+first_iteration = True
 
 # Create an event handler
 def correctGrid(num):
@@ -48,15 +49,18 @@ for i in range(0,9):
         # Combobox create a dropdown menu
         box_ent = ttk.Combobox(master=frame)
         box_ent["values"] = ("",1,2,3,4,5,6,7,8,9)
-        box_ent.current(sudoku[i][j])
-        num = box_ent.get()
 
-        #box_ent.bind('<Motion>', correctGrid(num))
-        #box_ent.bind('<key>', correctGrid(num))
-        box_ent.bind('<Button-1>', correctGrid(num))
+        if first_iteration:
+            box_ent.current(sudoku[i][j])
+            num = box_ent.get()
+            box_ent.bind(correctGrid)
+
+        num = box_ent.get()
+        box_ent.bind('<Motion>', correctGrid)
 
         box_ent.pack(padx=5, pady=10)
 
+first_iteration = False
 
 # Run the event loop
 window.mainloop()
