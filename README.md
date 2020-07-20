@@ -35,7 +35,11 @@ Same as version 1 for now
     - [x] Add even more advanced sudokus to test on
     - [x] Remove possible numbers based on combination of tree numbers in rows, columns and boxes
     - [x] Guess numbers with brute force solution if the other methods fail
-- [ ] Better UI
-    - [ ] Improve input of new sudokus
-    - [ ] Make the output nicer
+- [x] Better UI
+    - [x] Improve input of new sudokus
+    - [x] Make the output nicer
+- [ ] Database of sudokus
+    - [ ] Create database of sudokus
+    - [ ] Enable "load sudoku called sudoku_v2" from database
+    - [ ] Enable "save sudoku called sudoku_john" in database
 - [ ] Make the solver web based
