@@ -8,20 +8,20 @@ from auxiliary_functions import print_two_sudokus, load_sudoku
 class Launch:
     def __init__(self, master):
 
-        self.master = master
+        self.window = master
         master.title("Sudoku Solver v2")
+        self.window.geometry('500x500')
 
         self.sudoku = sudoku
-        self.sudoku_old = sudoku
 
-        # Create a window object
-        window = tk.Tk()
-        window.geometry('500x500')
+        self._table = []
+        for i in range(1,10):
+            self._table += [[0,0,0,0,0,0,0,0,0]]
 
         for i in range(0,9):
             # Make the window scalable
-            window.columnconfigure(i, weight=1, minsize=50)
-            window.rowconfigure(i, weight=1, minsize=50)
+            self.window.columnconfigure(i, weight=1, minsize=50)
+            self.window.rowconfigure(i, weight=1, minsize=50)
             for j in range(0,9):
                 
                 # Create a 3x3 color grid
@@ -34,7 +34,7 @@ class Launch:
                 
                 # The entry box are framed by a frame
                 frame = tk.Frame(
-                    master=window,
+                    master=self.window,
                     bg=color,
                     padx=5,
                     pady=5
@@ -45,35 +45,48 @@ class Launch:
                 )
 
                 # Combobox create a dropdown menu
-                box_ent = ttk.Combobox(master=frame)
-                box_ent["values"] = ("",1,2,3,4,5,6,7,8,9)
+                self._table[i][j] = ttk.Combobox(master=frame)
+                self._table[i][j]["values"] = ("",1,2,3,4,5,6,7,8,9)
+                self._table[i][j].current(self.sudoku[i][j])
 
-                box_ent.current(sudoku[i][j])
-                num = box_ent.get()
-                box_ent.bind('<Motion>', self.correctGrid)
+                self._table[i][j].bind('<Motion>', self.correctGrid)
 
-                box_ent.pack(padx=5, pady=10)
-        
+                self._table[i][j].pack(padx=5, pady=10)
+       
+        # Front-End Menu
+        menu = tk.Menu(master)
+        master.config(menu = menu)
 
-    # Create an event handler
+        file = tk.Menu(menu)
+        menu.add_cascade(label = 'Sudoku', menu = file)
+        file.add_command(label = 'Exit', command = master.quit)
+        file.add_command(label = 'Solve', command = self.solveInput)
+        file.add_command(label = 'Clear', command = self.clearAll)
+
+    
+    def clearAll(self):
+        pass
+    
+
+    def solveInput(self):
+        solve_sudoku(self.sudoku)
+        for i in range(9):
+            for j in range(9):
+                self._table[i][j].current(self.sudoku[i][j])
+
+    
+
+    # Correct the Grid if inputs are incorrect
     def correctGrid(self, event):
         for i in range(9):
             for j in range(9):
-                num = 1
-                if num == '':
-                    self.sudoku[i][j]
+                if self._table[i][j].get() == '':
+                    self.sudoku[i][j] = 0
                 else:
-                    self.sudoku[i][j] = int(num)    
-
+                    self.sudoku[i][j] = int(self._table[i][j].get())
 
 root = tk.Tk()
 root.geometry('275x283')
 
 app = Launch(root)
 root.mainloop()
-
-
-fields = load_sudoku(app.sudoku)
-fields_old = load_sudoku(app.sudoku_old)
-
-print_two_sudokus(fields_old, fields)
