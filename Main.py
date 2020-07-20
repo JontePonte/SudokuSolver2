@@ -8,12 +8,14 @@ from auxiliary_functions import print_two_sudokus, load_sudoku, unpack_sudoku
 class Launch:
     def __init__(self, master):
 
+        # Create main window
         self.window = master
         master.title("Sudoku Solver v2")
         self.window.geometry('500x500')
 
         self.sudoku = sudoku
 
+        # Create frontend table
         self._table = []
         for i in range(1,10):
             self._table += [[0,0,0,0,0,0,0,0,0]]
@@ -32,7 +34,7 @@ class Launch:
                 else:
                     color = 'white'
                 
-                # The entry box are framed by a frame
+                # The combobox are framed by a frame
                 frame = tk.Frame(
                     master=self.window,
                     bg=color,
@@ -49,11 +51,14 @@ class Launch:
                 self._table[i][j]["values"] = ("",1,2,3,4,5,6,7,8,9)
                 self._table[i][j].current(self.sudoku[i][j])
 
+                # Update values all the time
                 self._table[i][j].bind('<Motion>', self.setGrid)
+                self._table[i][j].bind('<FocusIn>', self.setGrid)
+                self._table[i][j].bind('<Button-1>', self.setGrid)
 
                 self._table[i][j].pack(padx=5, pady=10)
        
-        # Front-End Menu
+        # Frontend Menu
         menu = tk.Menu(master)
         master.config(menu = menu)
 
@@ -64,17 +69,20 @@ class Launch:
         file.add_command(label = 'Clear', command = self.clearAll)
 
     
+    # Set all tabe values (and sudoku values) to 0
     def clearAll(self):
         for i in range(9):
             for j in range(9):
                 self._table[i][j].set('')
 
-    
 
+    # Call main solver and update 
     def solveInput(self):
+        # The solver outputs a matrix of field-objects and they needs to be unpacked
         solved_fields = solve_sudoku(self.sudoku)
         solved_sudoku = unpack_sudoku(solved_fields)
 
+        # Update all values
         for i in range(9):
             for j in range(9):
                 self._table[i][j].set(solved_sudoku[i][j])
@@ -89,8 +97,11 @@ class Launch:
                 else:
                     self.sudoku[i][j] = int(self._table[i][j].get())
 
+
+# Create tk object
 root = tk.Tk()
 root.geometry('275x283')
 
+# Create main object and runt tkinter-loop
 app = Launch(root)
 root.mainloop()
