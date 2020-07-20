@@ -33,6 +33,19 @@ def set_box_number(x, y):
     return box_number
 
 
+def unpack_sudoku(fields):
+    """ Create sudoku matrix from fields """
+    output = []
+    output_row = []
+    # Create list in lists with all field numbers
+    for field in fields:
+        output_row.append(field.number)
+        if field.x == 8:
+            output.append(output_row)
+            output_row = []
+    return output
+
+
 def load_sudoku(sudoku):
     """ Create a list of fields with all relevant information based on a sudoku. The sudoku needs to be in the form found in Sudokus.py """
     y = 0

@@ -89,3 +89,4 @@ def solve_sudoku(sudoku):
 
     # The original and the hopfully solved sudoku are printed side by side
     print_two_sudokus(fields_old, fields)
+    return fields

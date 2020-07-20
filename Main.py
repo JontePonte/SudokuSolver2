@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 
 from Main_solver import solve_sudoku
 from Sudokus import sudoku
-from auxiliary_functions import print_two_sudokus, load_sudoku
+from auxiliary_functions import print_two_sudokus, load_sudoku, unpack_sudoku
 
 class Launch:
     def __init__(self, master):
@@ -49,7 +49,7 @@ class Launch:
                 self._table[i][j]["values"] = ("",1,2,3,4,5,6,7,8,9)
                 self._table[i][j].current(self.sudoku[i][j])
 
-                self._table[i][j].bind('<Motion>', self.correctGrid)
+                self._table[i][j].bind('<Motion>', self.setGrid)
 
                 self._table[i][j].pack(padx=5, pady=10)
        
@@ -65,19 +65,23 @@ class Launch:
 
     
     def clearAll(self):
-        pass
+        for i in range(9):
+            for j in range(9):
+                self._table[i][j].set('')
+
     
 
     def solveInput(self):
-        solve_sudoku(self.sudoku)
+        solved_fields = solve_sudoku(self.sudoku)
+        solved_sudoku = unpack_sudoku(solved_fields)
+
         for i in range(9):
             for j in range(9):
-                self._table[i][j].current(self.sudoku[i][j])
-
+                self._table[i][j].set(solved_sudoku[i][j])
     
 
-    # Correct the Grid if inputs are incorrect
-    def correctGrid(self, event):
+    # Store grid input in sudoku matrix
+    def setGrid(self, event):
         for i in range(9):
             for j in range(9):
                 if self._table[i][j].get() == '':
