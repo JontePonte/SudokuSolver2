@@ -1,6 +1,8 @@
 # test files
 from-git.py
 tk_test.py
+db_test
+test.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
