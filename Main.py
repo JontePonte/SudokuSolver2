@@ -20,6 +20,11 @@ class Launch:
         for i in range(1,10):
             self._table += [[0,0,0,0,0,0,0,0,0]]
 
+        # Create color mask
+        self.color_mask = []
+        for i in range(1,10):
+            self.color_mask += [["Out","Out","Out","Out","Out","Out","Out","Out","Out"]]
+
         for i in range(0,9):
             # Make the window scalable
             self.window.columnconfigure(i, weight=1, minsize=50)
@@ -78,6 +83,12 @@ class Launch:
 
     # Call main solver and update 
     def solveInput(self):
+        # Set all input sudoku fields to True in color mask
+        for i in range(9):
+            for j in range(9):
+                if self._table[i][j].get() != '':
+                    self.color_mask[i][j] = "In"
+        
         # The solver outputs a matrix of field-objects and they needs to be unpacked
         solved_fields = solve_sudoku(self.sudoku)
         solved_sudoku = unpack_sudoku(solved_fields)
@@ -86,6 +97,9 @@ class Launch:
         for i in range(9):
             for j in range(9):
                 self._table[i][j].set(solved_sudoku[i][j])
+                if self.color_mask[i][j] == "Out":
+                    pass
+                    # self._table[i][j].config(-forground red)
     
 
     # Store grid input in sudoku matrix
