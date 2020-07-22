@@ -108,6 +108,9 @@ class Launch:
             for j in range(9):
                 if self._table[i][j].get() == '':
                     self.sudoku[i][j] = 0
+                if self._table[i][j].get() not in ['1','2','3','4','5','6','7','8','9']:
+                    self._table[i][j].set('')
+                    self.sudoku[i][j] = 0
                 else:
                     self.sudoku[i][j] = int(self._table[i][j].get())
 
