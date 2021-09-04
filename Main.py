@@ -3,7 +3,8 @@ import tkinter.ttk as ttk
 
 from Main_solver import solve_sudoku
 from Sudokus import sudoku
-from auxiliary_functions import print_two_sudokus, load_sudoku, unpack_sudoku
+from auxiliary_functions import unpack_sudoku
+
 
 class Launch:
     def __init__(self, master):
@@ -30,7 +31,7 @@ class Launch:
             self.window.columnconfigure(i, weight=1, minsize=50)
             self.window.rowconfigure(i, weight=1, minsize=50)
             for j in range(0,9):
-                
+
                 # Create a 3x3 color grid
                 if (i < 3 or i > 5) and (j < 3 or j > 5):
                     color = 'gray80'
@@ -38,7 +39,7 @@ class Launch:
                     color = 'gray80'
                 else:
                     color = 'white'
-                
+
                 # The combobox are framed by a frame
                 frame = tk.Frame(
                     master=self.window,
@@ -62,27 +63,27 @@ class Launch:
                 self._table[i][j].bind('<Button-1>', self.setGrid)
 
                 self._table[i][j].pack(padx=5, pady=10)
-       
+
         # Frontend Menu
         menu = tk.Menu(master)
-        master.config(menu = menu)
+        master.config(menu=menu)
 
         file = tk.Menu(menu)
-        menu.add_cascade(label = 'Sudoku', menu = file)
-        file.add_command(label = 'Exit', command = master.quit)
-        file.add_command(label = 'Solve', command = self.solveInput)
-        file.add_command(label = 'Clear', command = self.clearAll)
+        menu.add_cascade(label='Sudoku', menu=file)
+        file.add_command(label='Exit', command=master.quit)
+        file.add_command(label='Solve', command=self.solveInput)
+        file.add_command(label='Clear', command=self.clearAll)
 
-    
-    # Set all tabe values (and sudoku values) to 0
+
+    # Set all table values (and sudoku values) to 0
     def clearAll(self):
         for i in range(9):
             for j in range(9):
                 self._table[i][j].set('')
 
 
-    # Call main solver and update 
     def solveInput(self):
+        # Call main solver and update
         # Set all input sudoku fields to True in color mask
         for i in range(9):
             for j in range(9):
